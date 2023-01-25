@@ -11,6 +11,8 @@ const [signup, setSignup] = useState({
     search: "",
     });
     const [culture, setculture] = useState({
+    culture: "",
+    });
     const [suggest, setsuggest] = useState([]);
 const [login, setlogin] = useState({
     email: "",
