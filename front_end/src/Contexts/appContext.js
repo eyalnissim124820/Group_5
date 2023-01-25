@@ -14,8 +14,7 @@ export function AppContextProvider({ children }) {
   const [culture, setculture] = useState({
     culture: "",
   });
-  const [suggest, setsuggest] = useState([]);
-
+  const [suggestions, setSuggestions] = useState([]);
   const [books, setbooks] = useState([])
 
   const getAllBooks = async (e) => {
@@ -48,6 +47,7 @@ export function AppContextProvider({ children }) {
     const toDS = { 'key1': forSuggestion, 'key2': culture }
     try {
       const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
+      setSuggestions(res.data)
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -71,7 +71,8 @@ export function AppContextProvider({ children }) {
     fetchLogin,
     getAllBooks,
     fetchForSuggestion,
-    setsuggest,
+    setSuggestions,
+    suggestions,
     setculture,
     culture,
     setbooks,
