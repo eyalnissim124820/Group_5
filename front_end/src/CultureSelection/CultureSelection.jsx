@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CultureSelection.css";
 import ArrowPic from "../attachments/arrow-pic.png";
 
+
 const cultures = [
   "Asian",
   "British",

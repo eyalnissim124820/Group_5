@@ -1,12 +1,13 @@
 const express = require("express");
-const booksRoute = require("./routes/booksRoute");
-const cors = require("cors");
 const PORT = 8080;
 const app = express();
+const signup = require('./routs/signup')
+const cors = require("cors");
 
+app.use(cors())
 app.use(express.json());
-app.use(cors());
-app.use("/books", booksRoute);
+
+app.use("/signup", signup);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
