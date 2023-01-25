@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Poppins:wght@100;200;300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.choose-experience-container {
+  margin: 30px;
+  }
+
+.experience-options-container {
+  background: transparent;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo-container {
+  background: transparent;
+}

@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CultureSelection.css";
 import ArrowPic from "../attachments/arrow-pic.png";
 
+
+const cultures = [
+  "Asian",
+  "British",
+  "Canadian",
+  "Chinese",
+  "Classic",
+  "Egyptian",
+  "English",
+  "French",
+  "German",
+  "Indian",
+  "Irish",
+  "Italian",
+  "Japanese",
+  "Latin American",
+  "Polish",
+  "Russian",
+  "Scandinavian",
+  "Spanish",
+  "Swedish",
+  "Turkish"
+];
+
 const CultureSelection = () => {
+  const [clicked, setClicked] = useState(Array(12).fill(false));
+
+  const handleClick = (index) => {
+    setClicked((prevState) => {
+      const newState = [...prevState];
+      newState[index] = !newState[index];
+      return newState;
+    });
+  };
+
   return (
     <div className="culture-selection-container">
       <div className="go-back-container">
@@ -13,26 +47,19 @@ const CultureSelection = () => {
         Select the culture that interests you
       </h2>
       <div className="culture-options-container">
-        <button className="culture-options-btn">Asian</button>
-        <button className="culture-options-btn">British</button>
-        <button className="culture-options-btn">Canadian</button>
-        <button className="culture-options-btn">Chinese</button>
-        <button className="culture-options-btn">Classic</button>
-        <button className="culture-options-btn">Egyptian</button>
-        <button className="culture-options-btn">English</button>
-        <button className="culture-options-btn">French</button>
-        <button className="culture-options-btn">German</button>
-        <button className="culture-options-btn">Indian</button>
-        <button className="culture-options-btn">Irish</button>
-        <button className="culture-options-btn">Italian</button>
-        <button className="culture-options-btn">Japanese</button>
-        <button className="culture-options-btn">Latin American</button>
-        <button className="culture-options-btn">Polish</button>
-        <button className="culture-options-btn">Russian</button>
-        <button className="culture-options-btn">Scandinavian</button>
-        <button className="culture-options-btn">Spanish</button>
-        <button className="culture-options-btn">Swedish</button>
-        <button className="culture-options-btn">Turkish</button>
+        {cultures.map((culture, index) => (
+          <button
+            key={culture}
+            className={
+              clicked[index]
+                ? "culture-options-clicked-btn"
+                : "culture-options-default-btn"
+            }
+            onClick={() => handleClick(index)}
+          >
+            {culture}
+          </button>
+        ))}
       </div>
     </div>
   );
