@@ -1,16 +1,15 @@
 import './App.css';
-import ChooseExperience from './ChooseExperience/ChooseExperience';
 import CultureSelection from './CultureSelection/CultureSelection';
 import LandingPage from './LandingPage/LandingPage'
 import LoginPage from './LoginPage/LoginPage';
+import RecommendedBooks from './RecommendedBooks/RecommendedBooks';
 
 function App() {
   return (
     <div className="App">
-      <CultureSelection />
+      {/* <CultureSelection /> */}
       {/* <ChooseExperience /> */}
-      {/* <LandingPage/> */}
-      {/* <LoginPage/> */}
+      <RecommendedBooks />
     </div>
   );
 }

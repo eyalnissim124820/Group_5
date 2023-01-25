@@ -8,8 +8,13 @@
   color: white;
 }
 
+.culture-selection-title {
+  font-size: 22px;
+}
+
 .choose-experience-container {
-  margin: 30px;
+  background: transparent;
+  margin: 34px;
   }
 
 .experience-options-container {
@@ -22,4 +27,14 @@
 
 .logo-container {
   background: transparent;
+  margin-bottom: 30px;
+}
+
+.logo-pic {
+  height: 90px;
+  background: transparent;
+}
+
+.softlanding-text {
+  height: 62px;
 }
