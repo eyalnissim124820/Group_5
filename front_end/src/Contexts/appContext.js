@@ -1,29 +1,35 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
 
 const AppContext = React.createContext();
-const [signup, setSignup] = useState({
+
+export function useApp() {
+  return useContext(AppContext);
+}
+
+
+export function AppContextProvider({ children }) {
+  const [signup, setSignup] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    });
-    const [search, setsearch] = useState({
+  });
+  const [search, setsearch] = useState({
     search: "",
-    });
-    const [culture, setculture] = useState({
+  });
+  const [culture, setculture] = useState({
     culture: "",
-    });
-    const [suggest, setsuggest] = useState([]);
-const [login, setlogin] = useState({
+  });
+  const [suggest, setsuggest] = useState([]);
+  const [login, setlogin] = useState({
     email: "",
     password: "",
   })
 
-export function useApp() {
-    return useContext(AppContext);
-}
 
-const getAllBooks = async (e) => {
+
+  const getAllBooks = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.get("http://localhost:8080/");
@@ -55,7 +61,7 @@ const getAllBooks = async (e) => {
   const hanleSuggest = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8080/suggest",culture,suggest);
+      const res = await axios.post("http://localhost:8080/suggest", culture, suggest);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -72,30 +78,26 @@ const getAllBooks = async (e) => {
     }
   };
 
-export function AppContextProvider({ children }) {
+  const value = {
+    hanleSignUp,
+    hanleLogIn,
+    getAllBooks,
+    hanleSearch,
+    hanleSuggest,
+    setsearch,
+    setlogin,
+    setSignup,
+    setsuggest,
+    setculture,
+  }
 
-
-
-    const value = {
-        hanleSignUp,
-        hanleLogIn,
-        getAllBooks,
-        hanleSearch,
-        hanleSuggest,
-        setsearch,
-        setlogin,
-        setSignup,
-        setsuggest,
-        setculture,
-    }
-
-    return (
-        <>
-            <AppContext.Provider value={value}>
-                {children}
-            </AppContext.Provider>
-        </>
-    )
+  return (
+    <>
+      <AppContext.Provider value={value}>
+        {children}
+      </AppContext.Provider>
+    </>
+  )
 }
 
 
