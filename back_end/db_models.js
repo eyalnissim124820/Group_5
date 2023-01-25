@@ -12,7 +12,7 @@ async function addReadBookModel(bookId, userId) {
     const { data, error } = await supabase
       .from("usersBooks")
       .insert({ bookId, userId, id: uuidv4() });
-    console.log(data);
+
     if (error) throw error;
     return data;
   } catch (error) {
@@ -20,4 +20,34 @@ async function addReadBookModel(bookId, userId) {
   }
 }
 
-module.exports = { addReadBookModel };
+async function removeReadBook(bookId, userId) {
+  try {
+    const { data, error } = await supabase
+      .from("usersBooks")
+      .delete()
+      .eq("bookId", bookId)
+      .eq("userId", userId);
+
+    if (error) throw error;
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+    return { error };
+  }
+}
+
+async function getUsersBooks(userId) {
+  try {
+    const { data, error } = await supabase
+      .from("usersBooks")
+      .select()
+      .eq("userId", userId);
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return { error };
+  }
+}
+
+module.exports = { addReadBookModel, removeReadBook, getUsersBooks };
