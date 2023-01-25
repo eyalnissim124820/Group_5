@@ -30,22 +30,25 @@ const SearchPage = () => {
   
 
   const [search, setsearch] = useState({
-    search: "",
+    title: "",
   });
 
   const handleSearch = async () => {
     try {
-      // const res = await axios.post("http://localhost:8080/search", search);
-      // console.log(res.data);
+      const res = await axios.post("http://localhost:8080/search", search);
+      console.log(res.data);
       console.log(Date.now());
+      console.log("this is handleSearch");
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect (() => {
-    debounce(()=> handleSearch())
+    const debounced = debounce(()=> handleSearch())
+    debounced()
     console.log(search)
+    console.log(Date.now());
 
   }, [search])
 
@@ -60,7 +63,7 @@ const SearchPage = () => {
       <div className="navsearch">
         <input
           type="text"
-          onChange={(e) => {setsearch({...search, search: e.target.value})}}
+          onChange={(e) => {setsearch({...search, title: e.target.value})}}
           required="required"
           placeholder="Search here..."
         ></input>
