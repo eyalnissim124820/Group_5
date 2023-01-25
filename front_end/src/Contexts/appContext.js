@@ -34,20 +34,20 @@ export function AppContextProvider({ children }) {
       if (res.data === true) {
         console.log("Login Success");
         return true;
-      }else {
+      } else {
         return false;
       }
-      
+
     } catch (err) {
       console.log(err);
     }
   };
 
 
-  const hanleSuggest = async (e) => {
-    e.preventDefault();
+  async function fetchForSuggestion(forSuggestion) {
+    const toDS = { 'key1': forSuggestion, 'key2': culture }
     try {
-      const res = await axios.post("http://localhost:8080/suggest", culture, suggest);
+      const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -58,9 +58,9 @@ export function AppContextProvider({ children }) {
     try {
       const res = await axios.post("http://localhost:8080/login", loginInfo);
       console.log(res.data);
-      
-        return true;
-      
+
+      return true;
+
     } catch (err) {
       console.log(err);
     }
@@ -70,9 +70,10 @@ export function AppContextProvider({ children }) {
     fetchSignUp,
     fetchLogin,
     getAllBooks,
-    hanleSuggest,
+    fetchForSuggestion,
     setsuggest,
     setculture,
+    culture,
     setbooks,
     books
   }

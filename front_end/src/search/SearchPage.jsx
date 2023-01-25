@@ -23,15 +23,16 @@ function debounce(callBack, timeout = 500) {
 
 
 const SearchPage = () => {
-  const { setbooks, books } = useApp()
+  const { setbooks, books, fetchForSuggestion } = useApp()
   const [selectedList, setSelectedList] = useState([]);
   const [showSelected, setShowSelected] = useState(false)
 
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
 
+
   function handleSuggestButton() {
-    console.log(selectedList);
+    fetchForSuggestion(selectedList)
     toRecommendedBooks()
   }
 
