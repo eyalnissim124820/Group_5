@@ -16,7 +16,7 @@ export function AppContextProvider({ children }) {
   });
   const [suggest, setsuggest] = useState([]);
 
-
+  const [books, setbooks] = useState([])
 
   const getAllBooks = async (e) => {
     try {
@@ -43,7 +43,7 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  
+
   const hanleSuggest = async (e) => {
     e.preventDefault();
     try {
@@ -73,6 +73,8 @@ export function AppContextProvider({ children }) {
     hanleSuggest,
     setsuggest,
     setculture,
+    setbooks,
+    books
   }
 
   return (
