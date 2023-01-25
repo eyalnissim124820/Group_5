@@ -1,0 +1,33 @@
+* {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.recommended-books-main-container {
+  padding: 34px;
+}
+
+.recommended-books-text {
+  text-align: left;
+}
+
+.recommended-books-title {
+  margin-bottom: 5px;
+}
+
+.book-pic {
+  width: 110px;
+}
+
+.recommended-books-container {
+  width: 100%;
+  border: 2px red dotted;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.recommended-books-container {
+}

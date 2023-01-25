@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./ChooseExperience.css";
 import ArrowPic from "../attachments/arrow-pic.png";
 import Logo from "../attachments/logo.svg";
+import SoftLanding from "../attachments/softLanding.svg";
 
 const ChooseExperience = () => {
   const options = ["Literature", "Movies", "Music", "Food"];
@@ -24,10 +25,10 @@ const ChooseExperience = () => {
       </div>
       <div className="logo-container">
         <img src={Logo} alt="Corporate logo" className="logo-pic" />
-        
+        <img src={SoftLanding} alt="Corporate logo text" className="softlanding-text" />
       </div>
       <h2 className="culture-selection-title">
-        It's time to choose your entertainment option
+        Choose your entertainment option
       </h2>
       <div className="experience-options-container">
         {options.map((culture, index) => (
