@@ -8,7 +8,7 @@
 }
 
 .culture-selection-container {
-  margin: 30px;
+  padding: 34px;
 }
 
 .culture-selection-title {
@@ -39,6 +39,7 @@
 }
 
 .culture-options-container {
+  background: transparent;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -47,13 +48,25 @@
   overflow-y: scroll;
 }
 
-.culture-options-btn {
+.culture-options-default-btn {
   border: none;
   background-image: linear-gradient(to right, #371e3a, #11534e);
-  margin: 5px 0;
+  margin: 6px 0;
   padding: 10px;
   font-size: 18px;
   color: white;
+  border-radius: 10px;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.culture-options-clicked-btn {
+  border: none;
+  background: #04fbd3;
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 18px;
+  color: black;
   border-radius: 10px;
   opacity: 0.9;
   cursor: pointer;
