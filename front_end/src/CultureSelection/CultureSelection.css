@@ -19,3 +19,11 @@
   font-weight: 500;
   font-size: 24px;
 }
+
+.go-back-container {
+  border: 2px blue dotted;
+}
+
+.go-back {
+  color: white;
+}
