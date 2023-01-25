@@ -9,26 +9,15 @@ export function useApp() {
 
 
 export function AppContextProvider({ children }) {
-  const [signup, setSignup] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-  
+
   const [culture, setculture] = useState({
     culture: "",
   });
   const [suggest, setsuggest] = useState([]);
-  const [login, setlogin] = useState({
-    email: "",
-    password: "",
-  })
 
 
 
   const getAllBooks = async (e) => {
-    e.preventDefault();
     try {
       const res = await axios.get("http://localhost:8080/");
       console.log(res.data);
@@ -37,10 +26,9 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const hanleSignUp = async (e) => {
-    e.preventDefault();
+  const fetchSignUp = async (signupInfo) => {
     try {
-      const res = await axios.post("http://localhost:8080/signup", signup);
+      const res = await axios.post("http://localhost:8080/signup", signupInfo);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -58,10 +46,9 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const hanleLogIn = async (e) => {
-    e.preventDefault();
+  const fetchLogin = async (loginInfo) => {
     try {
-      const res = await axios.post("http://localhost:8080/login", login);
+      const res = await axios.post("http://localhost:8080/login", loginInfo);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -69,12 +56,10 @@ export function AppContextProvider({ children }) {
   };
 
   const value = {
-    hanleSignUp,
-    hanleLogIn,
+    fetchSignUp,
+    fetchLogin,
     getAllBooks,
     hanleSuggest,
-    setlogin,
-    setSignup,
     setsuggest,
     setculture,
   }
