@@ -1,14 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./SearchPage.css";
-import { useEffect } from "react";
 import { useApp } from "../Contexts/appContext";
 
-const usermock = { name: "user1", lastname: "lastname" }
+import "./SearchPage.css";
 
+import selectedIcon from '../attachments/selected.svg'
 
 function debounce(callBack, timeout = 500) {
   let timer;
@@ -21,13 +21,24 @@ function debounce(callBack, timeout = 500) {
 }
 
 
-const SearchPage = () => {
 
+const SearchPage = () => {
   const { setbooks, books } = useApp()
+  const [selectedList, setSelectedList] = useState([]);
+  const [showSelected, setShowSelected] = useState(false)
+
+  const navigate = useNavigate()
+  const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
+
+  function handleSuggestButton() {
+    console.log(selectedList);
+    toRecommendedBooks()
+  }
 
   const [search, setsearch] = useState({
     title: "",
   });
+
 
   const handleSearch = async () => {
     try {
@@ -37,19 +48,18 @@ const SearchPage = () => {
       console.log(err);
     }
   };
-
   useEffect(() => {
     const debounced = debounce(() => handleSearch())
     debounced()
   }, [search])
 
 
-  const navigate = useNavigate()
-  const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
+
   return (
     <div className="search-page">
       <div className="search-header">
         <p className="welcome-user">Enter your favorite books</p>
+        <p style={(selectedList.length > 4 ? { color: 'red' } : {})}>5/{selectedList.length}</p>
       </div>
       <div className="page-body">
         <input
@@ -60,11 +70,24 @@ const SearchPage = () => {
         ></input>
         <ul className="search-list">
           {books?.map((book, index) => (
-            <li key={index}>{book.title}</li>
+            <li key={index} onClick={() => {
+              if (selectedList.length < 5) {
+                const findBook = selectedList.indexOf(book.bookId);
+                if (findBook < 0) {
+                  setSelectedList([...selectedList, book.bookId])
+                } else {
+                  const newArray = selectedList.filter(id => id !== book.bookId)
+                  setSelectedList(newArray)
+                }
+              } else {
+                const newArray = selectedList.filter(id => id !== book.bookId)
+                setSelectedList(newArray)
+              }
+            }}>{book.title}<img id="selectedIcon" src={selectedIcon} alt="selectedIcon" /></li>
           ))}
         </ul>
         <div>
-          <button id="recommend-button" onClick={toRecommendedBooks}>Suggest me new one</button>
+          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new one</button>
         </div>
       </div>
     </div>
