@@ -19,17 +19,26 @@
 }
 
 .book-pic {
-  width: 110px;
+  width: 140px;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 
 .recommended-books-container {
   width: 100%;
-  border: 2px red dotted;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .recommended-books-container {
+  justify-content: space-between;
+}
+
+#loadingTitle{
+  position: absolute;
+  right: 20%;
+  top: 23%;
 }
 
 #spinner{

@@ -7,10 +7,14 @@ import LoadingSpinner from '../attachments/LoadingSpinner.svg'
 
 
 const RecommendedBooks = () => {
+
   return (
     <>
       {false ?
-        <img id="spinner" src={LoadingSpinner} alt="loading" />
+        <>
+          <h3 id="loadingTitle">Connecting The Dots...</h3>
+          <img id="spinner" src={LoadingSpinner} alt="loading" />
+        </>
         :
         < div className="recommended-books-main-container" >
           <div className="recommended-books-text">
