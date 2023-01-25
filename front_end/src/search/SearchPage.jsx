@@ -5,14 +5,10 @@ import axios from "axios";
 
 import "./SearchPage.css";
 import { useEffect } from "react";
+import { useApp } from "../Contexts/appContext";
 
-const usermock = {name: "user1", lastname: "lastname"}
-const books = [
-    { name: "book1" },
-    { name: "book2" },
-    { name: "book3" },
-    { name: "book4" },
-];
+const usermock = { name: "user1", lastname: "lastname" }
+
 
 function debounce(callBack, timeout = 500) {
   let timer;
@@ -27,7 +23,7 @@ function debounce(callBack, timeout = 500) {
 
 const SearchPage = () => {
 
-  
+  const { setbooks, books } = useApp()
 
   const [search, setsearch] = useState({
     title: "",
@@ -36,46 +32,39 @@ const SearchPage = () => {
   const handleSearch = async () => {
     try {
       const res = await axios.post("http://localhost:8080/search", search);
-      console.log(res.data);
-      console.log(Date.now());
-      console.log("this is handleSearch");
+      setbooks(res.data.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect (() => {
-    const debounced = debounce(()=> handleSearch())
+  useEffect(() => {
+    const debounced = debounce(() => handleSearch())
     debounced()
-    console.log(search)
-    console.log(Date.now());
-
   }, [search])
 
 
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
   return (
-    <div>
-        <div>
-            <h1>Welcome {usermock.name}{usermock.lastname}</h1>
-        </div>
-      <div className="navsearch">
+    <div className="search-page">
+      <div className="search-header">
+        <p className="welcome-user">Enter your favorite books</p>
+      </div>
+      <div className="page-body">
         <input
           type="text"
-          onChange={(e) => {setsearch({...search, title: e.target.value})}}
+          onChange={(e) => { setsearch({ ...search, title: e.target.value }) }}
           required="required"
           placeholder="Search here..."
         ></input>
-        <div>
-          {books.map((book, index) => (
-            <div key={index}>
-              <h1>{book.name}</h1>
-            </div>
+        <ul className="search-list">
+          {books?.map((book, index) => (
+            <li key={index}>{book.title}</li>
           ))}
-        </div>
+        </ul>
         <div>
-            <button onClick={toRecommendedBooks}>Suggest me new one</button>
+          <button id="recommend-button" onClick={toRecommendedBooks}>Suggest me new one</button>
         </div>
       </div>
     </div>
