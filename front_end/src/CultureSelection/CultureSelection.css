@@ -2,14 +2,12 @@
 
 * {
   font-family: "Poppins", sans-serif;
-  background: black;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 .culture-selection-container {
-  border: 2px red dotted;
   margin: 30px;
 }
 
@@ -20,10 +18,39 @@
   font-size: 24px;
 }
 
-.go-back-container {
-  border: 2px blue dotted;
+.go-back-p {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 10px;
 }
 
-.go-back {
+.go-back-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.arrow-pic {
+  height: 14px;
+}
+
+.culture-options-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 420px;
+  overflow-y: scroll;
+}
+
+.culture-options-btn {
+  border: none;
+  background-image: linear-gradient(to right, #371e3a, #11534e);
+  margin: 5px 0;
+  padding: 10px;
+  font-size: 18px;
   color: white;
+  border-radius: 10px;
+  opacity: 0.9;
 }
