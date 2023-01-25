@@ -7,9 +7,9 @@ import RecommendedBooks from './RecommendedBooks/RecommendedBooks';
 function App() {
   return (
     <div className="App">
-      {/* <CultureSelection /> */}
+      <CultureSelection />
       {/* <ChooseExperience /> */}
-      <RecommendedBooks />
+      {/* <RecommendedBooks /> */}
     </div>
   );
 }
