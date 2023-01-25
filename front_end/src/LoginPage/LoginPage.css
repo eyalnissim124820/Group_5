@@ -1,0 +1,36 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 4px;
+    height: 36px;
+    width: 100%;
+    padding-left: 10px;
+}
+
+label {
+    position: relative;
+}
+
+label p {
+    position: absolute;
+    text-align: left;
+    margin-left: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: black;
+    width: fit-content;
+    top: -11px;
+}
+
+#logInButton{
+    width: 100%;
+}
+

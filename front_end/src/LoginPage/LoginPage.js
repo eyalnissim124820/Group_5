@@ -13,21 +13,25 @@ export default function LoginPage() {
             </div>
             <div className='bodyPage'>
                 <form>
-                    <div className='smallInput'>
-                        <label>
-                            <p>First Name</p>
-                            <input  type='text' required></input>
-                        </label>
-                        <label>
-                            <p>Last Name</p>
-                            <input  type='text' required></input>
-                        </label>
-                    </div>
+                    <label>
+                        <p >First Name</p>
+                        <input type='text' required></input>
+                    </label>
+                    <label>
+                        <p>Last Name</p>
+                        <input type='text' required></input>
+                    </label>
                     <label>
                         <p>Email</p>
-                        <input  type='email' required></input>
+                        <input type='email' required></input>
                     </label>
-                    <input className='bottomPage' type='submit' value='Sign Up'></input>
+                    <label>
+                        <p>Password</p>
+                        <input type='password' required></input>
+                    </label>
+                    <div id='loginbutton-container'>
+                    <input id='logInButton' type='submit' value='Sign Up'></input>
+                    </div>
                 </form>
 
             </div>

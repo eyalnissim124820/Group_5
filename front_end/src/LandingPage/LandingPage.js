@@ -12,7 +12,7 @@ export default function LandingPage() {
                 <img id='logo_title' src={logo_title} alt='logo_title' />
             </div>
             <div className='bodyPage'>
-                <p>We will help you to
+                <p className='welcome'>We will help you to
                     get access to different cultures in various areas!</p>
             </div>
             <div className='bottomPage'>
