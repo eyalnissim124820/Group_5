@@ -1,10 +1,15 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import logo from '../attachments/logo.svg'
 import logo_title from '../attachments/softLanding.svg'
 
 import '../LandingPage/LandingPage.css'
 
 export default function LandingPage() {
+
+    const navigate = useNavigate()
+    const toLogin = () => { navigate('/LoginPage') }
+
     return (
         <div className='page'>
             <div className='topPage'>
@@ -17,7 +22,7 @@ export default function LandingPage() {
             </div>
             <div className='bottomPage'>
                 <p id='discription'>create a comfortable first step into another culture</p>
-                <button id='logInButton'>Log in</button>
+                <button id='logInButton' onClick={toLogin}>Log in</button>
             </div>
         </div>
     )

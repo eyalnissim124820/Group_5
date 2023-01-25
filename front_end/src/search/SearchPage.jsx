@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./SearchPage.css";
 
 const usermock = {name: "user1", lastname: "lastname"}
@@ -8,7 +10,12 @@ const books = [
     { name: "book3" },
     { name: "book4" },
 ];
+
+
 const SearchPage = () => {
+
+  const navigate = useNavigate()
+  const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
   return (
     <div>
         <div>
@@ -25,12 +32,12 @@ const SearchPage = () => {
         <div>
           {books.map((book, index) => (
             <div key={index}>
-              <h1>book.name</h1>
+              <h1>{book.name}</h1>
             </div>
           ))}
         </div>
         <div>
-            <button>Suggest me new one</button>
+            <button onClick={toRecommendedBooks}>Suggest me new one</button>
         </div>
       </div>
     </div>

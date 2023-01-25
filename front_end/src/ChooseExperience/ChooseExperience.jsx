@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./ChooseExperience.css";
+
 import ArrowPic from "../attachments/arrow-pic.png";
 import Logo from "../attachments/logo.svg";
 import SoftLanding from "../attachments/softLanding.svg";
@@ -9,17 +12,22 @@ const ChooseExperience = () => {
 
   const [clicked, setClicked] = useState(Array(12).fill(false));
 
+  const navigate = useNavigate()
+  const goBackCulture = () => { navigate('/CultureSelection') }
+  const toSearchPage = () => { navigate('/SearchPage') }
+
   const handleClick = (index) => {
     setClicked((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];
       return newState;
     });
+    toSearchPage()
   };
 
   return (
     <div className="choose-experience-container">
-      <div className="go-back-container">
+      <div className="go-back-container" onClick={goBackCulture}>
         <img src={ArrowPic} alt="Arrow logo" className="arrow-pic" />
         <p className="go-back-p">Go back</p>
       </div>

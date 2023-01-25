@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./CultureSelection.css";
 import ArrowPic from "../attachments/arrow-pic.png";
 
@@ -29,7 +31,13 @@ const cultures = [
 const CultureSelection = () => {
   const [clicked, setClicked] = useState(Array(12).fill(false));
 
+  const navigate = useNavigate()
+  const goBackLogin = () => { navigate('/LoginPage') }
+  const toChooseExperience = () => { navigate('/ChooseExperience') }
+
   const handleClick = (index) => {
+    setTimeout(toChooseExperience()
+      , 2000)
     setClicked((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];
@@ -39,7 +47,7 @@ const CultureSelection = () => {
 
   return (
     <div className="culture-selection-container">
-      <div className="go-back-container">
+      <div className="go-back-container" onClick={goBackLogin}>
         <img src={ArrowPic} alt="Arrow logo" className="arrow-pic" />
         <p className="go-back-p">Go back</p>
       </div>

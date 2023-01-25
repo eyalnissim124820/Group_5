@@ -1,10 +1,23 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
+
+
 import logo from '../attachments/logo.svg'
 import logo_title from '../attachments/softLanding.svg'
 
 import './LoginPage.css'
 
 export default function LoginPage() {
+
+    const navigate = useNavigate()
+    const toCultureSelection = () => { navigate('/CultureSelection') }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        toCultureSelection()
+    }
+
+
     return (
         <div className='page'>
             <div className='topPage'>
@@ -12,7 +25,7 @@ export default function LoginPage() {
                 <img id='logo_title' src={logo_title} alt='logo_title' />
             </div>
             <div className='bodyPage'>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label>
                         <p >First Name</p>
                         <input type='text' required></input>
