@@ -1,6 +1,6 @@
 import React from "react";
 import "./CultureSelection.css";
-import ArrowPic from "./arrow-pic.png";
+import ArrowPic from "../attachments/arrow-pic.png";
 
 const CultureSelection = () => {
   return (
