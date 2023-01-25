@@ -1,9 +1,10 @@
 import './App.css';
+import CultureSelection from './CultureSelection/CultureSelection';
 
 function App() {
   return (
     <div className="App">
-      first 
+      <CultureSelection />
     </div>
   );
 }
