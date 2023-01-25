@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 import "./SearchPage.css";
+import { useEffect } from "react";
 
 const usermock = {name: "user1", lastname: "lastname"}
 const books = [
@@ -11,8 +14,41 @@ const books = [
     { name: "book4" },
 ];
 
+function debounce(callBack, timeout = 500) {
+  let timer;
+  return (arg) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      return callBack(arg);
+    }, timeout);
+  };
+}
+
 
 const SearchPage = () => {
+
+  
+
+  const [search, setsearch] = useState({
+    search: "",
+  });
+
+  const handleSearch = async () => {
+    try {
+      // const res = await axios.post("http://localhost:8080/search", search);
+      // console.log(res.data);
+      console.log(Date.now());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect (() => {
+    debounce(()=> handleSearch())
+    console.log(search)
+
+  }, [search])
+
 
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
@@ -24,8 +60,7 @@ const SearchPage = () => {
       <div className="navsearch">
         <input
           type="text"
-          onChange={(e) => console.log("www")}
-          value={""}
+          onChange={(e) => {setsearch({...search, search: e.target.value})}}
           required="required"
           placeholder="Search here..."
         ></input>

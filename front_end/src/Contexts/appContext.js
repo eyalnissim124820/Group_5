@@ -15,9 +15,7 @@ export function AppContextProvider({ children }) {
     email: "",
     password: "",
   });
-  const [search, setsearch] = useState({
-    search: "",
-  });
+  
   const [culture, setculture] = useState({
     culture: "",
   });
@@ -49,15 +47,7 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const hanleSearch = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.get("http://localhost:8080/search", search);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
   const hanleSuggest = async (e) => {
     e.preventDefault();
     try {
@@ -82,9 +72,7 @@ export function AppContextProvider({ children }) {
     hanleSignUp,
     hanleLogIn,
     getAllBooks,
-    hanleSearch,
     hanleSuggest,
-    setsearch,
     setlogin,
     setSignup,
     setsuggest,
