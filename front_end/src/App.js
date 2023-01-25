@@ -7,6 +7,7 @@ import LoginPage from './LoginPage/LoginPage';
 import RecommendedBooks from './RecommendedBooks/RecommendedBooks';
 import ChooseExperience from './ChooseExperience/ChooseExperience.jsx'
 import SearchPage from './search/SearchPage.jsx'
+import BookPage from './BookPage/BookPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="ChooseExperience" element={<ChooseExperience />} />
           <Route path="SearchPage" element={<SearchPage />} />
           <Route path="RecommendedBooks" element={<RecommendedBooks />} />
+          <Route path="BookPage" element={<BookPage />} />
         </Routes>
       </BrowserRouter>
     </div>
