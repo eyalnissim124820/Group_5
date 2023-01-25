@@ -16,6 +16,7 @@
   text-align: left;
   font-weight: 500;
   font-size: 24px;
+  background: transparent;
 }
 
 .go-back-p {
@@ -29,6 +30,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 30px;
+  background: transparent;
+  cursor: pointer;
 }
 
 .arrow-pic {
@@ -53,4 +56,5 @@
   color: white;
   border-radius: 10px;
   opacity: 0.9;
+  cursor: pointer;
 }
