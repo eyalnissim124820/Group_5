@@ -28,10 +28,10 @@ router.delete("/remove", async (req, res) => {
   }
 });
 
-router.get("/users-books", async (req, res) => {
+router.get("/users-books/:id", async (req, res) => {
   try {
-    const { userId } = req.body;
-    const data = await getUsersBooks(userId);
+    const { id } = req.params;
+    const data = await getUsersBooks(id);
     res.send(data);
   } catch (error) {
     console.error(error);
