@@ -7,10 +7,10 @@ import LoginPage from './LoginPage/LoginPage';
 function App() {
   return (
     <div className="App">
-      {/* <CultureSelection /> */}
+      <CultureSelection />
       {/* <ChooseExperience /> */}
       {/* <LandingPage/> */}
-      <LoginPage/>
+      {/* <LoginPage/> */}
     </div>
   );
 }
