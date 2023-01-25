@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const AppContext = React.createContext();
 
+
 export function useApp() {
   return useContext(AppContext);
 }
@@ -30,6 +31,13 @@ export function AppContextProvider({ children }) {
     try {
       const res = await axios.post("http://localhost:8080/signup", signupInfo);
       console.log(res.data);
+      if (res.data === true) {
+        console.log("Login Success");
+        return true;
+      }else {
+        return false;
+      }
+      
     } catch (err) {
       console.log(err);
     }
@@ -50,6 +58,9 @@ export function AppContextProvider({ children }) {
     try {
       const res = await axios.post("http://localhost:8080/login", loginInfo);
       console.log(res.data);
+      
+        return true;
+      
     } catch (err) {
       console.log(err);
     }
