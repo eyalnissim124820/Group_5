@@ -44,7 +44,9 @@ export function AppContextProvider({ children }) {
   async function fetchForSuggestion(forSuggestion) {
     const toDS = { 'key1': forSuggestion, 'key2': culture + ' Literature' }
     try {
+      console.log('getting rec')
       if(!culture){
+        
         return false
       }
       const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
