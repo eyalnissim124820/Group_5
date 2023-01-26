@@ -30,8 +30,8 @@ export function AppContextProvider({ children }) {
     try {
       const res = await axios.post("http://localhost:8080/signup", signupInfo);
       console.log(res.data);
-      if (res.data === true) {
-        console.log("Login Success");
+      if (res.data.userId) {
+        console.log("signup Success");
         return true;
       } else {
         return false;
