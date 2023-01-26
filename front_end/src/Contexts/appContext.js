@@ -42,16 +42,14 @@ export function AppContextProvider({ children }) {
 
 
   async function fetchForSuggestion(forSuggestion) {
-    console.log(culture);
     const toDS = { 'key1': forSuggestion, 'key2': culture + ' Literature' }
-    console.log(toDS,'toDS');
     try {
       if(!culture){
         return false
       }
       const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
-      console.log(res.data);
-      setSuggestions(res.data)
+      const shortData = res.data.filter((_, i) => i < 4);
+      setSuggestions(shortData)
       return true
     } catch (err) {
       console.log(err);
