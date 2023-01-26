@@ -2,7 +2,8 @@ html {
   background-image: url("./attachments/homeBackground.jpg");
   background-position: center;
   height: 100vh;
-
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 body, #root{
@@ -13,3 +14,43 @@ body, #root{
   text-align: center;
   height: 100%;
 }
+
+#dasktop-bg{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin-left: 25%;
+}
+
+#dtop-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding-top: 5%;
+}
+
+#noDesktop{
+  height: 120px;
+}
+#iphonMock{
+  height: 500px;
+
+  margin-top: 123px;
+}
+
+  @media (min-width: 700px) {
+  .App{
+   display: none;
+  }
+   #dasktop-bg{
+    display: flex;
+   }
+  }

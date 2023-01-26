@@ -3,34 +3,21 @@ import axios from 'axios';
 
 const AppContext = React.createContext();
 
+
 export function useApp() {
   return useContext(AppContext);
 }
 
 
 export function AppContextProvider({ children }) {
-  const [signup, setSignup] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-  const [search, setsearch] = useState({
-    search: "",
-  });
+
   const [culture, setculture] = useState({
     culture: "",
   });
-  const [suggest, setsuggest] = useState([]);
-  const [login, setlogin] = useState({
-    email: "",
-    password: "",
-  })
-
-
+  const [suggestions, setSuggestions] = useState([]);
+  const [books, setbooks] = useState([])
 
   const getAllBooks = async (e) => {
-    e.preventDefault();
     try {
       const res = await axios.get("http://localhost:8080/");
       console.log(res.data);
@@ -39,56 +26,57 @@ export function AppContextProvider({ children }) {
     }
   };
 
-  const hanleSignUp = async (e) => {
-    e.preventDefault();
+  const fetchSignUp = async (signupInfo) => {
     try {
-      const res = await axios.post("http://localhost:8080/signup", signup);
+      const res = await axios.post("http://localhost:8080/signup", signupInfo);
+      console.log(res.data);
+      if (res.data === true) {
+        console.log("Login Success");
+        return true;
+      } else {
+        return false;
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+  async function fetchForSuggestion(forSuggestion) {
+    const toDS = { 'key1': forSuggestion, 'key2': culture }
+    try {
+      const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
+      setSuggestions(res.data)
       console.log(res.data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const hanleSearch = async (e) => {
-    e.preventDefault();
+  const fetchLogin = async (loginInfo) => {
     try {
-      const res = await axios.get("http://localhost:8080/search", search);
+      const res = await axios.post("http://localhost:8080/login", loginInfo);
       console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const hanleSuggest = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:8080/suggest", culture, suggest);
-      console.log(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
-  const hanleLogIn = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:8080/login", login);
-      console.log(res.data);
+      return true;
+
     } catch (err) {
       console.log(err);
     }
   };
 
   const value = {
-    hanleSignUp,
-    hanleLogIn,
+    fetchSignUp,
+    fetchLogin,
     getAllBooks,
-    hanleSearch,
-    hanleSuggest,
-    setsearch,
-    setlogin,
-    setSignup,
-    setsuggest,
+    fetchForSuggestion,
+    setSuggestions,
+    suggestions,
     setculture,
+    culture,
+    setbooks,
+    books
   }
 
   return (

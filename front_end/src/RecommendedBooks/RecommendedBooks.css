@@ -35,6 +35,12 @@
   justify-content: space-between;
 }
 
+#loadingTitle{
+  position: absolute;
+  right: 20%;
+  top: 23%;
+}
+
 #spinner{
   position: absolute;
   right: 30%;

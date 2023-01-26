@@ -66,6 +66,7 @@ const RecommendedBooks = () => {
         <img id="spinner" src={LoadingSpinner} alt="loading" />
       ) : (
         <div className="recommended-books-main-container">
+
           <div className="recommended-books-text">
             <h2 className="recommended-books-title">Here's your list buddy!</h2>
             <p>

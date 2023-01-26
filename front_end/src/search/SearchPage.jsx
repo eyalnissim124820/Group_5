@@ -1,43 +1,94 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import { useApp } from "../Contexts/appContext";
 
 import "./SearchPage.css";
 
-const usermock = {name: "user1", lastname: "lastname"}
-const books = [
-    { name: "book1" },
-    { name: "book2" },
-    { name: "book3" },
-    { name: "book4" },
-];
+import selectedIcon from '../attachments/selected.svg'
+
+function debounce(callBack, timeout = 500) {
+  let timer;
+  return (arg) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      return callBack(arg);
+    }, timeout);
+  };
+}
+
 
 
 const SearchPage = () => {
+  const { setbooks, books, fetchForSuggestion } = useApp()
+  const [selectedList, setSelectedList] = useState([]);
+  const [showSelected, setShowSelected] = useState(false)
 
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
+
+
+  function handleSuggestButton() {
+    fetchForSuggestion(selectedList)
+    toRecommendedBooks()
+  }
+
+  const [search, setsearch] = useState({
+    title: "",
+  });
+
+
+  const handleSearch = async () => {
+    try {
+      const res = await axios.post("http://localhost:8080/search", search);
+      setbooks(res.data.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    const debounced = debounce(() => handleSearch())
+    debounced()
+  }, [search])
+
+
+
   return (
-    <div>
-        <div>
-            <h1>Welcome {usermock.name}{usermock.lastname}</h1>
-        </div>
-      <div className="navsearch">
+    <div className="search-page">
+      <div className="search-header">
+        <p className="welcome-user">Enter your favorite books</p>
+        <p style={(selectedList.length > 4 ? { color: 'red' } : {})}>5/{selectedList.length}</p>
+      </div>
+      <div className="page-body">
         <input
           type="text"
-          onChange={(e) => console.log("www")}
-          value={""}
+          onChange={(e) => { setsearch({ ...search, title: e.target.value }) }}
           required="required"
           placeholder="Search here..."
         ></input>
-        <div>
-          {books.map((book, index) => (
-            <div key={index}>
-              <h1>{book.name}</h1>
-            </div>
+        <ul className="search-list">
+          {books?.map((book, index) => (
+            <li key={index} onClick={() => {
+              if (selectedList.length < 5) {
+                const findBook = selectedList.indexOf(book.bookId);
+                if (findBook < 0) {
+                  setSelectedList([...selectedList, book.bookId])
+                } else {
+                  const newArray = selectedList.filter(id => id !== book.bookId)
+                  setSelectedList(newArray)
+                }
+              } else {
+                const newArray = selectedList.filter(id => id !== book.bookId)
+                setSelectedList(newArray)
+              }
+            }}>{book.title}<img id="selectedIcon" src={selectedIcon} alt="selectedIcon" /></li>
           ))}
-        </div>
+        </ul>
         <div>
-            <button onClick={toRecommendedBooks}>Suggest me new one</button>
+          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new one</button>
         </div>
       </div>
     </div>
