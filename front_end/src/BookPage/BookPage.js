@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./BookPage.css";
 import { useApp } from "../Contexts/appContext";
 import LoadingSpinner from "../attachments/LoadingSpinner.svg";
+import ArrowPic from "../attachments/arrow-pic.png";
+import { useNavigate } from "react-router-dom";
 
 export default function BookPage() {
 
   const [currentBook, setCurrentBook] = useState()
   const { suggestions } = useApp()
 
+  const navigate = useNavigate()
+  const goBack = () => { navigate('/RecommendedBooks') }
 
   useEffect(() => {
     const url = new URLSearchParams(window.location.search);
@@ -21,6 +25,10 @@ export default function BookPage() {
     <>
       {currentBook ?
         <div className="book-page-main-container">
+          <div id="goBackId" className="go-back-container" onClick={goBack}>
+            <img src={ArrowPic} alt="Arrow logo" className="arrow-pic" />
+            <p className="go-back-p">Go back</p>
+          </div>
           <img src={currentBook?.coverImg} alt="book cover" className="book-page-pic" />
           <h2 className="book-page-book-title">{currentBook?.title}</h2>
           <h3 className="book-page-book-author">{currentBook?.author}</h3>

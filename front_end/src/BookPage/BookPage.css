@@ -14,18 +14,25 @@
   font-weight: 600;
   font-size: 20px;
   margin-top: 15px;
+  overflow-y: hidden;
+  max-height: 26px;
 }
 
 .book-page-book-author {
   font-weight: 300;
   font-size: 16px;
   text-align: center;
+  overflow-y: hidden;
+  max-height: 24px;
+}
+#goBackId{
+  margin: 0;
 }
 
 .book-synopsis-title {
   text-align: left;
   margin-top: 10px;
-  font-weight: 60C0;
+  font-weight: 60px;
   font-size: 20px;
 }
 
@@ -33,7 +40,7 @@
   text-align: left;
   margin-top: 8px;
   font-size: 14px;
-  height: 190px;
+  height: 170px;
   overflow-y: scroll;
 }
 
