@@ -19,12 +19,13 @@
 .book-page-book-author {
   font-weight: 300;
   font-size: 16px;
+  text-align: center;
 }
 
 .book-synopsis-title {
   text-align: left;
-  margin-top: 25px;
-  font-weight: 600;
+  margin-top: 10px;
+  font-weight: 60C0;
   font-size: 20px;
 }
 
@@ -32,6 +33,8 @@
   text-align: left;
   margin-top: 8px;
   font-size: 14px;
+  height: 190px;
+  overflow-y: scroll;
 }
 
 .book-page-pic {
@@ -40,15 +43,20 @@
   margin-top: 8px;
 }
 
-.buy-book-btn {
+#buy-book-btn {
   border: none;
   background: #04fbd3;
-  margin-top: 30px;
+  margin-top: 21px;
   padding: 10px;
   font-size: 18px;
-  color: black;
+  color: black !important;
   border-radius: 10px;
   opacity: 0.9;
   cursor: pointer;
   width: 100%;
+}
+
+#buy-book-btn a {
+  color: black !important;
+  text-decoration: none;
 }

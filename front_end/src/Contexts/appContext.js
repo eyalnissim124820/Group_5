@@ -11,9 +11,7 @@ export function useApp() {
 
 export function AppContextProvider({ children }) {
 
-  const [culture, setculture] = useState({
-    culture: "",
-  });
+  const [culture, setculture] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [books, setbooks] = useState([])
 
@@ -44,12 +42,17 @@ export function AppContextProvider({ children }) {
 
 
   async function fetchForSuggestion(forSuggestion) {
-    const toDS = { 'key1': forSuggestion, 'key2': culture }
+    console.log(culture);
+    const toDS = { 'key1': forSuggestion, 'key2': culture + ' Literature' }
     console.log(toDS,'toDS');
     try {
+      if(!culture){
+        return false
+      }
       const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
       console.log(res.data);
       setSuggestions(res.data)
+      return true
     } catch (err) {
       console.log(err);
     }

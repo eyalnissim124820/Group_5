@@ -14,6 +14,8 @@ const RecommendedBooks = () => {
     navigate(`/BookPage?id=${book.bookId}`);
   };
 
+  
+
   const { suggestions } = useApp()
 
   useEffect(() => {

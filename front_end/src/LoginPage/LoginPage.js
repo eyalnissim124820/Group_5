@@ -27,7 +27,7 @@ export default function LoginPage() {
   function handleSignUp(e) {
     e.preventDefault();
     fetchSignUp(signup).then((isFetch) => {
-        console.log(isFetch)
+      console.log(isFetch)
       if (isFetch) {
         setLoginMode(true)
         // toCultureSelection();
@@ -85,6 +85,7 @@ export default function LoginPage() {
             <label>
               <p>First Name</p>
               <input
+                name="first_name"
                 type="text"
                 onChange={(e) =>
                   setSignup({ ...signup, firstName: e.target.value })
@@ -95,6 +96,7 @@ export default function LoginPage() {
             <label>
               <p>Last Name</p>
               <input
+                name="last_name"
                 type="text"
                 onChange={(e) =>
                   setSignup({ ...signup, lastName: e.target.value })
@@ -105,6 +107,7 @@ export default function LoginPage() {
             <label>
               <p>Email</p>
               <input
+                name="email"
                 type="email"
                 onChange={(e) =>
                   setSignup({ ...signup, email: e.target.value })
@@ -115,6 +118,7 @@ export default function LoginPage() {
             <label>
               <p>Password</p>
               <input
+                name="password"
                 type="password"
                 onChange={(e) =>
                   setSignup({ ...signup, password: e.target.value })
@@ -130,7 +134,7 @@ export default function LoginPage() {
       </div>
       <div className="bottomPage">
         <p
-          style={{ textDecoration: "underline" ,cursor:'pointer'}}
+          style={{ textDecoration: "underline", cursor: 'pointer' }}
           onClick={() => setLoginMode(!loginMode)}
         >
           {loginMode
