@@ -128,7 +128,7 @@ export default function LoginPage() {
       </div>
       <div className="bottomPage">
         <p
-          style={{ textDecoration: "underline" }}
+          style={{ textDecoration: "underline" ,cursor:'pointer'}}
           onClick={() => setLoginMode(!loginMode)}
         >
           {loginMode
