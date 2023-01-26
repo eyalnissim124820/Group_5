@@ -26,7 +26,8 @@ function App() {
             <Route path="ChooseExperience" element={<ChooseExperience />} />
             <Route path="SearchPage" element={<SearchPage />} />
             <Route path="RecommendedBooks" element={<RecommendedBooks />} />
-            <Route path="BookPage" element={<BookPage />} />
+            <Route path="BookPage/:bookId" element={<BookPage />} />
+            <Route path='*' element={<div>Page Not Found</div>} />
           </Routes>
         </BrowserRouter>
       </div>
@@ -38,7 +39,7 @@ function App() {
           </div>
           <img id='noDesktop' src={noDesktop} alt='noDesktop' />
         </div>
-          <img id='iphonMock' src={iphonMock} alt='iphonMock' />
+        <img id='iphonMock' src={iphonMock} alt='iphonMock' />
       </div>
     </>
   );
