@@ -28,6 +28,8 @@ export default function LoginPage() {
     e.preventDefault();
     fetchSignUp(signup).then((isFetch) => {
       if (isFetch) {
+        console.log("hey")
+        setLoginMode(true)
         toCultureSelection();
       }
     });
