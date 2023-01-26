@@ -6,25 +6,24 @@ import LoadingSpinner from "../attachments/LoadingSpinner.svg";
 import { useApp } from "../Contexts/appContext";
 
 const RecommendedBooks = () => {
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-
 
   const handleBookClick = (book) => {
     navigate(`/BookPage?id=${book.bookId}`);
   };
 
-  
-
   const { suggestions } = useApp()
 
   useEffect(() => {
-  }, [suggestions])
-
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [suggestions]);
 
   return (
     <>
-      {suggestions.length === 0 ? (
+      {isLoading ? (
         <>
           <h3 id="loadingTitle">Connecting The Dots...</h3>
           <img id="spinner" src={LoadingSpinner} alt="loading" />
