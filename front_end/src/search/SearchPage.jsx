@@ -9,6 +9,7 @@ import { useApp } from "../Contexts/appContext";
 import "./SearchPage.css";
 
 import selectedIcon from '../attachments/selected.svg'
+import emptySelectedIcon from "../attachments/selectedEmpty.svg"
 
 function debounce(callBack, timeout = 500) {
   let timer;
@@ -30,7 +31,6 @@ const SearchPage = () => {
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
 
-
   function handleSuggestButton() {
     fetchForSuggestion(selectedList)
     toRecommendedBooks()
@@ -39,7 +39,6 @@ const SearchPage = () => {
   const [search, setsearch] = useState({
     title: "",
   });
-
 
   const handleSearch = async () => {
     try {
@@ -60,7 +59,7 @@ const SearchPage = () => {
     <div className="search-page">
       <div className="search-header">
         <p className="welcome-user">Enter your favorite books</p>
-        <p style={(selectedList.length > 4 ? { color: 'red' } : {})}>5/{selectedList.length}</p>
+        <p style={(selectedList.length > 4 ? { color: '#09FBD3' } : {})}>{selectedList.length}/5</p>
       </div>
       <div className="page-body">
         <input
@@ -84,7 +83,7 @@ const SearchPage = () => {
                 const newArray = selectedList.filter(id => id !== book.bookId)
                 setSelectedList(newArray)
               }
-            }}>{book.title}<img id="selectedIcon" src={selectedIcon} alt="selectedIcon" /></li>
+            }}>{book.title}{selectedList.indexOf(book.bookId) > -1 ? <img className="selectedIcon" id="selectedIcon" src={selectedIcon} alt="selectedIcon" /> : <img className="unselectedIcon" src={emptySelectedIcon} alt="notSelectedIcon" />}</li>
           ))}
         </ul>
         <div>
