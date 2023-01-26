@@ -45,11 +45,11 @@ export function AppContextProvider({ children }) {
 
   async function fetchForSuggestion(forSuggestion) {
     const toDS = { 'key1': forSuggestion, 'key2': culture }
-    console.log(toDS);
+    console.log(toDS,'toDS');
     try {
       const res = await axios.post("http://localhost:8080/books/getRecomendation", toDS);
-      setSuggestions(res.data)
       console.log(res.data);
+      setSuggestions(res.data)
     } catch (err) {
       console.log(err);
     }
