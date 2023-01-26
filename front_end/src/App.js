@@ -21,6 +21,8 @@ function App() {
           <Route path="SearchPage" element={<SearchPage />} />
           <Route path="RecommendedBooks" element={<RecommendedBooks />} />
           <Route path="BookPage" element={<BookPage />} />
+          <Route path='/BookPage/:bookId' element={<BookPage />} />
+          <Route path='*' element={<div>Error</div>} />
         </Routes>
       </BrowserRouter>
     </div>
