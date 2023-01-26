@@ -10,7 +10,6 @@ import "./SearchPage.css";
 
 import selectedIcon from '../attachments/selected.svg'
 import emptySelectedIcon from "../attachments/selectedEmpty.svg"
-import noResults from "../attachments/noBooksFound.svg"
 
 function debounce(callBack, timeout = 500) {
   let timer;
@@ -31,12 +30,13 @@ const SearchPage = () => {
 
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
+  const toCultureSelection = () => { navigate('/CultureSelection') }
 
   async function handleSuggestButton() {
     const res = await fetchForSuggestion(selectedList)
     if (res) {
       toRecommendedBooks()
-    }
+    }else toCultureSelection()
   }
 
   const [search, setsearch] = useState({
