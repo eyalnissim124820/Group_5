@@ -10,6 +10,7 @@ import "./SearchPage.css";
 
 import selectedIcon from '../attachments/selected.svg'
 import emptySelectedIcon from "../attachments/selectedEmpty.svg"
+import noResults from "../attachments/noBooksFound.svg"
 
 function debounce(callBack, timeout = 500) {
   let timer;
@@ -31,9 +32,11 @@ const SearchPage = () => {
   const navigate = useNavigate()
   const toRecommendedBooks = () => { navigate('/RecommendedBooks') }
 
-  function handleSuggestButton() {
-    fetchForSuggestion(selectedList)
-    toRecommendedBooks()
+  async function handleSuggestButton() {
+    const res = await fetchForSuggestion(selectedList)
+    if (res) {
+      toRecommendedBooks()
+    }
   }
 
   const [search, setsearch] = useState({
@@ -84,10 +87,12 @@ const SearchPage = () => {
                 setSelectedList(newArray)
               }
             }}>{book.title}{selectedList.indexOf(book.bookId) > -1 ? <img className="selectedIcon" id="selectedIcon" src={selectedIcon} alt="selectedIcon" /> : <img className="unselectedIcon" src={emptySelectedIcon} alt="notSelectedIcon" />}</li>
-          ))}
+          ))
+
+          }
         </ul>
         <div>
-          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new one</button>
+          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new books</button>
         </div>
       </div>
     </div>

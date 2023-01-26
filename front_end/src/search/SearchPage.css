@@ -60,3 +60,10 @@
 .unselectedIcon, .selectedIcon {
     margin-left: 5px;
 }
+
+#noResults{
+    height: 30%;
+    position: absolute;
+    left: 28%;
+    top: 30%;
+}
