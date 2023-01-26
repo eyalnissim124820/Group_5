@@ -87,7 +87,7 @@ const SearchPage = () => {
           ))}
         </ul>
         <div>
-          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new one</button>
+          <button id="recommend-button" onClick={handleSuggestButton}>Suggest me new books</button>
         </div>
       </div>
     </div>
