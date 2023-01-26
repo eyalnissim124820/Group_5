@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import "./CultureSelection.css";
 import ArrowPic from "../attachments/arrow-pic.png";
+import { useApp } from "../Contexts/appContext";
 
 
 const cultures = [
@@ -35,6 +36,8 @@ const CultureSelection = () => {
   const goBackLogin = () => { navigate('/LoginPage') }
   const toChooseExperience = () => { navigate('/ChooseExperience') }
 
+  const { setculture } = useApp()
+
   const handleClick = (index) => {
     setTimeout(toChooseExperience()
       , 2000)
@@ -43,8 +46,8 @@ const CultureSelection = () => {
       newState[index] = !newState[index];
       return newState;
     });
+    setculture(cultures[index]);
   };
-
   return (
     <div className="culture-selection-container">
       <div className="go-back-container" onClick={goBackLogin}>

@@ -4,13 +4,15 @@ import "./RecommendedBooks.css";
 
 import BookCover from "./book-cover.jpeg";
 import LoadingSpinner from '../attachments/LoadingSpinner.svg'
+import { useApp } from "../Contexts/appContext";
 
 
 const RecommendedBooks = () => {
 
+  const { suggestions } = useApp()
   return (
     <>
-      {false ?
+      {suggestions.length ===0 ?
         <>
           <h3 id="loadingTitle">Connecting The Dots...</h3>
           <img id="spinner" src={LoadingSpinner} alt="loading" />
